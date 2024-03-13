@@ -2,31 +2,26 @@ extensions:
   health_check:
 
 receivers:
-  otlp:
-    protocols:
-      grpc:
+  gitlab:
+    # secret: my-secret
+    # custom_service_name: github // default org-repo-name
+    # service_name_prefix: foo- // ignored if custom_service_name set
+    # service_name_suffix: -bar // ignored if custom_service_name set
+    cors:
+      allowed_origins: ["*"]
+      allowed_headers: ["*"]
 
 processors:
 
 exporters:
-  otlp:
-    endpoint: otlp.example.com:4317
+  debug:
+    verbosity: detailed
 
 service:
   pipelines:
     traces:
-      receivers: [otlp]
+      receivers: [gitlab]
       processors: []
-      exporters: [otlp]
-
-    metrics:
-      receivers: [otlp]
-      processors: []
-      exporters: [otlp]
-
-    logs:
-      receivers: [otlp]
-      processors: []
-      exporters: [otlp]
+      exporters: [debug]
 
   extensions: [health_check]

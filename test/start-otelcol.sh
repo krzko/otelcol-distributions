@@ -43,5 +43,5 @@ do
         echo "❌ FAIL. Server wasn't up after about 5s."
         exit 16
     fi
-    sleep 0.1s
+    sleep 1
 done

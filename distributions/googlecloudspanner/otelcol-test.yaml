@@ -2,28 +2,25 @@ extensions:
   health_check:
 
 receivers:
+  googlecloudspanner:
   otlp:
     protocols:
       grpc:
 
+
 processors:
 
 exporters:
-  googlecloudspanner:
-    protocol:
-      otlp:
-        timeout: 1s
-    resolver:
-      static:
-        hostnames:
-        - example.com:4317
+  otlp:
+    endpoint: example:4317 # this will fail to connect, but it shouldn't break the process
 
 service:
   extensions: [health_check]
   pipelines:
     traces:
       receivers:
+        - googlecloudspanner
         - otlp
       processors: []
       exporters:
-        - googlecloudspanner
+        - otlp
