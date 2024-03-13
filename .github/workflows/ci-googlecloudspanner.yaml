@@ -1,4 +1,4 @@
-name: Continuous Integration - spanner
+name: Continuous Integration - googlecloudspanner
 
 on:
   workflow_run:
@@ -8,8 +8,8 @@ on:
 
 jobs:
   release:
-    name: Continuous Integration - spanner - GoReleaser
+    name: Continuous Integration - googlecloudspanner - GoReleaser
     uses: ./.github/workflows/base-goreleaser-ci.yaml
     with:
-      distribution: spanner
+      distribution: googlecloudspanner
     secrets: inherit

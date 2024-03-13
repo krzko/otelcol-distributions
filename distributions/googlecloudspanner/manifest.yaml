@@ -26,4 +26,4 @@ extensions:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.96.0
 
 replaces:
-  - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver => https://github.com/maduris/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver feat-add-spannereventreceiver
+  - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver => https://github.com/maduris/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver spanner-fgac
