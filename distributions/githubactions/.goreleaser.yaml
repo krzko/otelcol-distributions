@@ -62,7 +62,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/krzko/otelcol-distributions/githubactions:{{ .Version }}-386
-        - krzko/otelcol-distributions/githubactions:{{ .Version }}-386
+        - krzko/otelcol-githubactions:{{ .Version }}-386
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -79,7 +79,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/krzko/otelcol-distributions/githubactions:{{ .Version }}-amd64
-        - krzko/otelcol-distributions/githubactions:{{ .Version }}-amd64
+        - krzko/otelcol-githubactions:{{ .Version }}-amd64
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -96,7 +96,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/krzko/otelcol-distributions/githubactions:{{ .Version }}-arm64
-        - krzko/otelcol-distributions/githubactions:{{ .Version }}-arm64
+        - krzko/otelcol-githubactions:{{ .Version }}-arm64
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -113,7 +113,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/krzko/otelcol-distributions/githubactions:{{ .Version }}-ppc64le
-        - krzko/otelcol-distributions/githubactions:{{ .Version }}-ppc64le
+        - krzko/otelcol-githubactions:{{ .Version }}-ppc64le
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -132,12 +132,12 @@ docker_manifests:
         - ghcr.io/krzko/otelcol-distributions/githubactions:{{ .Version }}-amd64
         - ghcr.io/krzko/otelcol-distributions/githubactions:{{ .Version }}-arm64
         - ghcr.io/krzko/otelcol-distributions/githubactions:{{ .Version }}-ppc64le
-    - name_template: krzko/otelcol-distributions/githubactions:{{ .Version }}
+    - name_template: krzko/otelcol-githubactions:{{ .Version }}
       image_templates:
-        - krzko/otelcol-distributions/githubactions:{{ .Version }}-386
-        - krzko/otelcol-distributions/githubactions:{{ .Version }}-amd64
-        - krzko/otelcol-distributions/githubactions:{{ .Version }}-arm64
-        - krzko/otelcol-distributions/githubactions:{{ .Version }}-ppc64le
+        - krzko/otelcol-githubactions:{{ .Version }}-386
+        - krzko/otelcol-githubactions:{{ .Version }}-amd64
+        - krzko/otelcol-githubactions:{{ .Version }}-arm64
+        - krzko/otelcol-githubactions:{{ .Version }}-ppc64le
 sboms:
     - id: archive
       artifacts: archive
