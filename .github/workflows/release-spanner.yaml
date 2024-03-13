@@ -1,0 +1,14 @@
+name: Release spanner
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Release spanner
+    uses: ./.github/workflows/base-release.yaml
+    with:
+      distribution: spanner
+    secrets: inherit
+    permissions: write-all

@@ -1,0 +1,15 @@
+name: Continuous Integration - spanner
+
+on:
+  workflow_run:
+    workflows: [Continuous Integration]
+    types:
+      - completed
+
+jobs:
+  release:
+    name: Continuous Integration - spanner - GoReleaser
+    uses: ./.github/workflows/base-goreleaser-ci.yaml
+    with:
+      distribution: spanner
+    secrets: inherit

@@ -1,0 +1,15 @@
+[Unit]
+Description=GitHub Actions distribution of the OpenTelemetry Collector
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/githubactions/githubactions.conf
+ExecStart=/usr/bin/githubactions $OTELCOL_OPTIONS
+KillMode=mixed
+Restart=on-failure
+Type=simple
+User=githubactions
+Group=githubactions
+
+[Install]
+WantedBy=multi-user.target
