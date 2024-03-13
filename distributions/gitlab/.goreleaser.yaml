@@ -62,6 +62,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/krzko/otelcol-distributions/gitlab:{{ .Version }}-386
+        - krzko/otelcol-distributions/gitlab:{{ .Version }}-386
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -78,6 +79,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/krzko/otelcol-distributions/gitlab:{{ .Version }}-amd64
+        - krzko/otelcol-distributions/gitlab:{{ .Version }}-amd64
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -94,6 +96,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/krzko/otelcol-distributions/gitlab:{{ .Version }}-arm64
+        - krzko/otelcol-distributions/gitlab:{{ .Version }}-arm64
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -110,6 +113,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/krzko/otelcol-distributions/gitlab:{{ .Version }}-ppc64le
+        - krzko/otelcol-distributions/gitlab:{{ .Version }}-ppc64le
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -128,6 +132,12 @@ docker_manifests:
         - ghcr.io/krzko/otelcol-distributions/gitlab:{{ .Version }}-amd64
         - ghcr.io/krzko/otelcol-distributions/gitlab:{{ .Version }}-arm64
         - ghcr.io/krzko/otelcol-distributions/gitlab:{{ .Version }}-ppc64le
+    - name_template: krzko/otelcol-distributions/gitlab:{{ .Version }}
+      image_templates:
+        - krzko/otelcol-distributions/gitlab:{{ .Version }}-386
+        - krzko/otelcol-distributions/gitlab:{{ .Version }}-amd64
+        - krzko/otelcol-distributions/gitlab:{{ .Version }}-arm64
+        - krzko/otelcol-distributions/gitlab:{{ .Version }}-ppc64le
 sboms:
     - id: archive
       artifacts: archive
