@@ -1,0 +1,14 @@
+name: Release githubactions
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Release githubactions
+    uses: ./.github/workflows/base-release.yaml
+    with:
+      distribution: githubactions
+    secrets: inherit
+    permissions: write-all

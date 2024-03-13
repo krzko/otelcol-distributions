@@ -1,0 +1,135 @@
+project_name: googlecloudspanner
+builds:
+    - id: googlecloudspanner
+      goos:
+        - darwin
+        - linux
+        - windows
+      goarch:
+        - "386"
+        - amd64
+        - arm64
+        - ppc64le
+      ignore:
+        - goos: darwin
+          goarch: "386"
+        - goos: windows
+          goarch: arm64
+      dir: _build
+      binary: googlecloudspanner
+      ldflags:
+        - -s
+        - -w
+      flags:
+        - -trimpath
+      env:
+        - CGO_ENABLED=0
+archives:
+    - id: googlecloudspanner
+      builds:
+        - googlecloudspanner
+      name_template: '{{ .Binary }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}{{ if .Mips }}_{{ .Mips }}{{ end }}'
+nfpms:
+    - package_name: googlecloudspanner
+      contents:
+        - src: googlecloudspanner.service
+          dst: /lib/systemd/system/googlecloudspanner.service
+        - src: googlecloudspanner.conf
+          dst: /etc/googlecloudspanner/googlecloudspanner.conf
+          type: config|noreplace
+        - src: otelcol.yaml
+          dst: /etc/googlecloudspanner/config.yaml
+          type: config
+      scripts:
+        preinstall: preinstall.sh
+        postinstall: postinstall.sh
+        preremove: preremove.sh
+      id: googlecloudspanner
+      builds:
+        - googlecloudspanner
+      formats:
+        - apk
+        - deb
+        - rpm
+      maintainer: Kristof Kowalski <k@ko.wal.ski>
+      description: googlecloudspanner distribution of the OpenTelemetry Collector
+      license: Apache 2.0
+checksum:
+    name_template: '{{ .ProjectName }}_checksums.txt'
+dockers:
+    - goos: linux
+      goarch: "386"
+      dockerfile: Dockerfile
+      image_templates:
+        - ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}-386
+      extra_files:
+        - otelcol.yaml
+      build_flag_templates:
+        - --pull
+        - --platform=linux/386
+        - --label=org.opencontainers.image.created={{.Date}}
+        - --label=org.opencontainers.image.name={{.ProjectName}}
+        - --label=org.opencontainers.image.revision={{.FullCommit}}
+        - --label=org.opencontainers.image.version={{.Version}}
+        - --label=org.opencontainers.image.source={{.GitURL}}
+      use: buildx
+    - goos: linux
+      goarch: amd64
+      dockerfile: Dockerfile
+      image_templates:
+        - ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}-amd64
+      extra_files:
+        - otelcol.yaml
+      build_flag_templates:
+        - --pull
+        - --platform=linux/amd64
+        - --label=org.opencontainers.image.created={{.Date}}
+        - --label=org.opencontainers.image.name={{.ProjectName}}
+        - --label=org.opencontainers.image.revision={{.FullCommit}}
+        - --label=org.opencontainers.image.version={{.Version}}
+        - --label=org.opencontainers.image.source={{.GitURL}}
+      use: buildx
+    - goos: linux
+      goarch: arm64
+      dockerfile: Dockerfile
+      image_templates:
+        - ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}-arm64
+      extra_files:
+        - otelcol.yaml
+      build_flag_templates:
+        - --pull
+        - --platform=linux/arm64
+        - --label=org.opencontainers.image.created={{.Date}}
+        - --label=org.opencontainers.image.name={{.ProjectName}}
+        - --label=org.opencontainers.image.revision={{.FullCommit}}
+        - --label=org.opencontainers.image.version={{.Version}}
+        - --label=org.opencontainers.image.source={{.GitURL}}
+      use: buildx
+    - goos: linux
+      goarch: ppc64le
+      dockerfile: Dockerfile
+      image_templates:
+        - ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}-ppc64le
+      extra_files:
+        - otelcol.yaml
+      build_flag_templates:
+        - --pull
+        - --platform=linux/ppc64le
+        - --label=org.opencontainers.image.created={{.Date}}
+        - --label=org.opencontainers.image.name={{.ProjectName}}
+        - --label=org.opencontainers.image.revision={{.FullCommit}}
+        - --label=org.opencontainers.image.version={{.Version}}
+        - --label=org.opencontainers.image.source={{.GitURL}}
+      use: buildx
+docker_manifests:
+    - name_template: ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}
+      image_templates:
+        - ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}-386
+        - ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}-amd64
+        - ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}-arm64
+        - ghcr.io/krzko/otelcol-distributions/googlecloudspanner:{{ .Version }}-ppc64le
+sboms:
+    - id: archive
+      artifacts: archive
+    - id: package
+      artifacts: package

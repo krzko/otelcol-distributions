@@ -1,0 +1,14 @@
+name: Release gitlab
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Release gitlab
+    uses: ./.github/workflows/base-release.yaml
+    with:
+      distribution: gitlab
+    secrets: inherit
+    permissions: write-all
