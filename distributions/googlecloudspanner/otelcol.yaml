@@ -2,32 +2,38 @@ extensions:
   health_check:
 
 receivers:
-  otlp:
-    protocols:
-      grpc:
+  googlecloudspanner:
+    collection_interval: 60s
+    top_metrics_query_max_rows: 100
+    backfill_enabled: true
+    cardinality_total_limit: 200000
+    # hide_topn_lockstats_rowrangestartkey: false
+    fgac_sys_reader_role: true
+    projects:
+      - project_id: my-project-dev-123456
+        instances:
+          - instance_id: foo-bar-dev
+            databases:
+              - orders
+              - users
+      - project_id: my-project-np-123456
+        instances:
+          - instance_id: baz-qux-np
+            databases:
+              - orders
+              - users
 
 processors:
 
 exporters:
-  googlecloudspanner:
-    protocol:
-      otlp:
-        timeout: 1s
-    resolver:
-      static:
-        hostnames:
-        - example.com:4317
+  debug:
+    verbosity: detailed
 
 service:
   pipelines:
     traces:
-      receivers: [otlp]
+      receivers: [googlecloudspanner]
       processors: []
-      exporters: [otlp]
-
-    logs:
-      receivers: [otlp]
-      processors: []
-      exporters: [otlp]
+      exporters: [debug]
 
   extensions: [health_check]

@@ -26,7 +26,7 @@ fi
 
 while kill -0 "${pid}" >/dev/null 2>&1
 do
-    sleep 0.1s
+    sleep 1
 done
 
 rm "otelcol-${distribution}.pid"
