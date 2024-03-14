@@ -20,7 +20,7 @@ exporters:
 service:
   pipelines:
     traces:
-      receivers: [otlp]
+      receivers: [githubactions]
       processors: []
       exporters: [debug]
 
