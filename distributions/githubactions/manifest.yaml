@@ -2,29 +2,29 @@ dist:
   module: github.com/krzko/otelcol-distributions/githubactions
   name: otelcol
   description: GitHub Actions distribution of the OpenTelemetry Collector
-  version: 0.96.0
+  version: 0.98.0
   output_path: ./_build
-  otelcol_version: 0.96.0
+  otelcol_version: 0.98.0
 
 receivers:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubactionsreceiver v0.1.1
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.96.0
-  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.96.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.98.0
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.98.0
 
 processors:
-  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.96.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.96.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.96.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.96.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor v0.96.0        
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.96.0
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.98.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.98.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.98.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.98.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor v0.98.0        
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.98.0
 
 exporters:
-  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.96.0
-  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.96.0
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.98.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.98.0
 
 extensions:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.96.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.98.0
 
 replaces:
   - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubactionsreceiver => github.com/krzko/opentelemetry-collector-contrib/receiver/githubactionsreceiver feat-add-githubactionseventreceiver
