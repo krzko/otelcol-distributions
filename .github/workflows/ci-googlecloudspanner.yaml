@@ -1,10 +1,11 @@
 name: Continuous Integration - googlecloudspanner
 
 on:
-  workflow_run:
-    workflows: [Continuous Integration]
-    types:
-      - completed
+  workflow_dispatch:
+  # workflow_run:
+  #   workflows: [Continuous Integration]
+  #   types:
+  #     - completed
 
 jobs:
   release:
