@@ -2,9 +2,9 @@ dist:
   module: github.com/krzko/otelcol-distributions/githubactions
   name: otelcol
   description: GitHub Actions distribution of the OpenTelemetry Collector
-  version: 0.98.0
+  version: 0.99.0
   output_path: ./_build
-  otelcol_version: 0.98.0
+  otelcol_version: 0.99.0
 
 receivers:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubactionsreceiver v0.2.0
